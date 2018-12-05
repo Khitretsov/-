@@ -1,0 +1,38 @@
+.modal-window-background {
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(128, 128, 128, 0.394);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-window {
+    height: 80vh;
+    width: 70vh;
+    background: white;
+    padding: 2vh;
+    border: 1px solid black;
+    border-radius: 1vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.modal-window .modal-field-name {
+    flex-grow: 1;
+    font-weight: bold;
+}
+
+.modal-window .modal-field-note {
+    flex-grow: 1;
+    font-style: italic;
+}
+
+.modal-window .modal-field-content {
+    flex-grow: 4;
+}

@@ -1,0 +1,34 @@
+section {
+    display: flex;
+    justify-content: space-between;
+    min-height: 10vh;
+    /* background: rgb(221, 221, 221); */
+    padding: 1vh;
+    border: 1px solid black;
+    border-radius: 1vh;
+    margin: 0.2vh;
+}
+
+section:hover {
+    background: rgb(235, 235, 235);
+}
+
+section div {
+    flex-basis: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+section button {
+    margin-left: auto;
+    width: 100px;
+}
+
+.employer {
+    background: rgb(205, 245, 125);
+}
+
+.rightContainer {
+    text-align: right;
+}
