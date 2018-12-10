@@ -18,8 +18,8 @@ class List extends React.Component {
         this.appearModal = this.appearModal.bind(this);
     }
     static getDerivedStateFromProps(props, state) {
+        if (props.doQuery) return state;
         if (props.data == null) {
-            console.log('getDerivedStateFromProps', state);
             props.getData(); 
         }
         return state;

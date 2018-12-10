@@ -1,21 +1,25 @@
 import React, { Component } from 'react';
-import './App.css';
-import List from './components/list/List';
 import { connect } from 'react-redux';
+import './App.css';
+
+import List from './components/list/List';
+import Header from './components/header/Header';
 
 class App extends Component {
+  // constructor() {
+  //   super();
+  // }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          {console.log('called from App', this.props.count)}
-          {
-            this.props.count.length
-          }
-        </header>
+        <Header>
+        </Header>
+
         <main>
           <List/>
-        </main>
+        </main> 
+
       </div>
     );
   }
@@ -23,7 +27,7 @@ class App extends Component {
 
 const mapStateToProps = store => {
   return ({
-    count: store.app.selectedData
+
   })
 }
 
