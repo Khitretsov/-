@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { PropTypes } from 'prop-types';
+
 import mapDispatchToProps from './action';
 import './style.css';
 
@@ -12,7 +14,15 @@ class Header extends React.Component {
             textFromUser: '',
             modalIsShow: false
         }
+        this.appearModal = this.appearModal.bind(this)
     }
+
+    appearModal() {
+        this.setState({
+            modalIsShow: !this.state.modalIsShow
+        })
+    }
+
     render() {
         return (
             <header className='App-header'>
@@ -32,9 +42,7 @@ class Header extends React.Component {
                         }
                     }
                 />
-                {/* {
-                    this.props.children
-                } */}
+
                 Отобранные вакансии: { this.props.count.length } 
 
                 <button disabled={this.props.count.length  == 0}
@@ -44,7 +52,8 @@ class Header extends React.Component {
                 >Просмотр</button>
                 
                 {
-                    this.state.modalIsShow ? <ModalWindow/> : null
+                    // this.state.modalIsShow ? <ModalWindow data={this.props.count[0]} appearModal={this.appearModal}/> : null
+                    this.state.modalIsShow ? <ModalWindow data={{items: this.props.count}} appearModal={this.appearModal}/> : null
                 }
                 
             {/* <List doQuery={false}/> */}
@@ -52,6 +61,11 @@ class Header extends React.Component {
             </header>
         )
     }
+}
+
+Header.propTypes = {
+    count: PropTypes.array,
+    getData: PropTypes.func
 }
 
 const mapStateToProps = state => {

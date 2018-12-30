@@ -17,7 +17,7 @@ class App extends Component {
         </Header>
 
         <main>
-          <List/>
+          <List doQuery={true}/>
         </main> 
 
       </div>

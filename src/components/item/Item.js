@@ -1,9 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { PropTypes } from 'prop-types';
+
 import mapDispatchToProps from './action';
 import './style.css';
  
 class Item extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            isAdded: false
+        }
+    }
+
     render() {
         return(
             <section onClick={
@@ -20,19 +29,28 @@ class Item extends React.Component {
                 </div>
                 <div className='rightContainer'>
                     <span>{!this.props.data.salary ? 'н/у' : this.props.data.salary == '' ? 'н/у' : this.props.data.salary.from}</span>
+                    {
+                        console.log('mkmkmkmmkmkmkmkmkmkmk', this.state.isAdded)
+                    }
                     <button
-                        onClick={ (e) => {
-                                this.props.selectItem(this.props.data)
-                                // console.dir(e.target)
-                                e.target.disabled = true
+                        onClick={ () => {
+                                this.setState((state) => {
+                                    return {isAdded: !state.isAdded}
+                                }, this.props.selectItem(this.props.data, this.state.isAdded))
                             }                         
                         }
-                    > Добавить </button>
+                    > {this.state.isAdded ? 'Убрать' : 'Добавить'} </button>
                 </div>
             </section>
         );
     }
 };
+
+Item.propTypes = {
+    appearModal: PropTypes.func,
+    data: PropTypes.object,
+    selectItem: PropTypes.func
+}
 
 const mapStateToProps = store => {
     return {

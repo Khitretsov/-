@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { PropTypes } from 'prop-types';
+
 import mapDispatchToProps from './action';
 import Item from '../item/Item';
 import './style.css';
@@ -18,7 +20,7 @@ class List extends React.Component {
         this.appearModal = this.appearModal.bind(this);
     }
     static getDerivedStateFromProps(props, state) {
-        if (props.doQuery) return state;
+        if (!props.doQuery) return state;
         if (props.data == null) {
             props.getData(); 
         }
@@ -35,13 +37,14 @@ class List extends React.Component {
     }
 
     render() {
+        const WhatDataIsUsed = this.props.dataFromParent ? this.props.dataFromParent : this.props.data;
         return (
             <article>
                 {
                     !this.state.paramOfModal.isModalShow ? null : <ModalWindow data={this.state.paramOfModal.dataForModal} appearModal={this.appearModal}/>
                 }
                 {
-                    !this.props.data ? null : this.props.data.items.map(
+                    !WhatDataIsUsed ? null : WhatDataIsUsed.items.map(
                         (item) => {
                             return (
                                 <Item data={item} key={Math.random()} appearModal={this.appearModal}/>
@@ -49,12 +52,16 @@ class List extends React.Component {
                         }
                     )
                 }
-                {
-                    // console.log('render', this.props.data)
-                }
             </article>
         );
     }
+}
+
+List.propTypes = {
+    doQuery: PropTypes.bool, 
+    data: PropTypes.object,
+    getData: PropTypes.func,
+    dataFromParent: PropTypes.object
 }
 
 const mapStateToProps = store => {

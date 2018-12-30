@@ -12,6 +12,9 @@
 }
 
 .modal-window {
+    font-size: calc(5px + 2vmin);
+    color: black;
+    
     height: 80vh;
     width: 70vh;
     background: white;
